@@ -6,6 +6,18 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 import matplotlib.pyplot as plt
 import logging
+import psutil
+
+obj_Disk = psutil.disk_usage('/')
+
+print(obj_Disk.percent)
+
+if(obj_Disk.percent >= 99):
+    logging.critical("Espaço em disco igual ou acima 99%, encerrando o programa")
+    exit()
+
+if(obj_Disk.percent > 80):
+    logging.warning("Cuidado! Espaço em disco acima de 80%")
 
 logging.basicConfig(filename='logs.txt',
                     filemode='a',
